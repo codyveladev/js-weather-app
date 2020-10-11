@@ -15,7 +15,7 @@ class Weather{
         return responseData;
         }
         else{
-            alert(`ERROR: ${response.status}`)
+            alert(`ERROR: ${response.status} Please Try Again!`)
         }
 
          

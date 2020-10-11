@@ -5,13 +5,14 @@ class UI{
         this.id = document.getElementById('id-string');
         this.icon = document.getElementById('w-icon');
         this.humidity = document.getElementById('w-humidity');
-        this.dewpoint = document.getElementById('w-dewpoint');
+        this.hi_lo = document.getElementById('w-hi_lo');
         this.feelsLike = document.getElementById('w-feels-like');
         this.wind = document.getElementById('w-wind'); 
     }
+
     paint(weather){
         //Location
-        this.location.textContent = weather.name; 
+        this.location.textContent = `${weather.name}, ${weather.sys.country}`; 
 
         //Description
         let desc = weather.weather[0].description;
@@ -36,7 +37,7 @@ class UI{
         max_temp = (max_temp - 273.15) * (9 / 5) + 32;
         let min_temp = weather.main.temp_min;
         min_temp = (min_temp - 273.15) * (9 / 5) + 32;
-        this.dewpoint.textContent = `High: ${max_temp.toPrecision(3)}°F Low ${min_temp.toPrecision(3)}°F`;
+        this.hi_lo.textContent = `High: ${max_temp.toPrecision(3)}°F Low ${min_temp.toPrecision(3)}°F`;
 
 
         //feels like 

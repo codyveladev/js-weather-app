@@ -1,6 +1,10 @@
- 
-//INIT
-const weather = new Weather('Houston', 'TX');
+//INIT Storage
+const storage = new Storage();
+//get stored location 
+const weatherLocation = storage.getLocationData();
+//INIT weather
+const weather = new Weather(weatherLocation.city, weatherLocation.state);
+//INIT UI
 const ui =  new UI(weather); 
 
 document.addEventListener('DOMContentLoaded', getWeather); 
@@ -14,7 +18,10 @@ function changeLocationFromModal(e) {
     const state = document.getElementById('state').value;
 
 
-    weather.changeLocation(city, state); 
+    weather.changeLocation(city, state);
+    //set location in LS
+    storage.setLocationData(city, state); 
+
     //Get weather 
     getWeather();
     //close modal
@@ -22,7 +29,6 @@ function changeLocationFromModal(e) {
 
     
 }
-console.log(weather.status);
 
 function getWeather(){
 weather.getWeather()
