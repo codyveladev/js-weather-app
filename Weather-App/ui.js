@@ -32,7 +32,7 @@ class UI{
         let humidity = weather.main.humidity;
         this.humidity.textContent = ` Humidity: ${humidity}%`;
 
-        //Dew Point
+        //Hi lo temp
         let max_temp = weather.main.temp_max; 
         max_temp = (max_temp - 273.15) * (9 / 5) + 32;
         let min_temp = weather.main.temp_min;
