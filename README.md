@@ -7,4 +7,4 @@ This project helped me understand the basics of working with public apis.
 
 Link to API: https://openweathermap.org/api
 
-Live-Demo: <strong>Coming Soon</strong>
+Live-Demo: https://codyveladev.github.io/js-weather-app/
