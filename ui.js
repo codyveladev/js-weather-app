@@ -12,58 +12,59 @@ class UI{
 
     paint(weather){
         //Location
-        this.location.textContent = `${weather.name}, ${weather.sys.country}`; 
+        console.log(weather.data[0])
+        this.location.textContent = `${weather.data[0].city_name}, ${weather.data[0].state_code}`; 
+
 
         //Description
-        let desc = weather.weather[0].description;
-        JSON.stringify(desc); 
-        this.desc.textContent = desc; 
+        this.desc.textContent = `${weather.data[0].weather.description}`; 
 
-        //Temp 
-        let temp = weather.main.temp;
-        temp = (temp - 273.15) * (9/5) + 32;
-        this.id.textContent = `${temp.toPrecision(3)} °F`;
+        let temp = weather.data[0].temp;
+        this.id.textContent = `${temp.toPrecision(3)} °C`;
 
-        //ICON
-        let icon = weather.weather[0].icon
-        this.icon.setAttribute('src', `http://openweathermap.org/img/w/${icon}.png`);
+        let icon = weather.data[0].weather.icon;
+        console.log(icon)
+        this.icon.setAttribute(
+          'src',
+          `https://www.weatherbit.io/static/img/icons/${weather.data[0].weather.icon}.png`
+        );
 
         //Humidity 
-        let humidity = weather.main.humidity;
+        let humidity = weather.data[0].rh;
         this.humidity.textContent = ` Humidity: ${humidity}%`;
 
-        //Hi lo temp
-        let max_temp = weather.main.temp_max; 
-        max_temp = (max_temp - 273.15) * (9 / 5) + 32;
-        let min_temp = weather.main.temp_min;
-        min_temp = (min_temp - 273.15) * (9 / 5) + 32;
-        this.hi_lo.textContent = `High: ${max_temp.toPrecision(3)}°F Low ${min_temp.toPrecision(3)}°F`;
+        //uv
+        this.hi_lo.textContent = `UV Index: ${weather.data[0].uv}`;
 
 
         //feels like 
-        let feels_like = weather.main.feels_like;
-        feels_like = (feels_like - 273.15) * (9 / 5) + 32;
-        this.feelsLike.textContent = `Feels like ${feels_like.toPrecision(3)}°F`;
+        let feels_like = weather.data[0].app_temp;
+        this.feelsLike.textContent = `Feels like ${feels_like.toPrecision(3)}°C`;
         
-        //wind
-        let wind_speed = weather.wind.speed; 
-        wind_speed = wind_speed * 2.237;
+        // //wind
+        // let wind_speed = weather.wind.speed; 
+        // wind_speed = wind_speed * 2.237;
 
-        let wind_direction = weather.wind.deg
-        let directions = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW", "N"]; 
+        // let wind_direction = weather.wind.deg
+        // let directions = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW", "N"]; 
         
-        let index = wind_direction % 360; 
+        // let index = wind_direction % 360; 
 
-        index = Math.round(index / 22.5, 0) + 1; 
+        // index = Math.round(index / 22.5, 0) + 1; 
 
-        let direction; 
+        // let direction; 
 
-        if(index > 0){
-            direction = directions[index - 1];
-        }
-        else{
-            direction = directions[index]; 
-        }
+        // if(index > 0){
+        //     direction = directions[index - 1];
+        // }
+        // else{
+        //     direction = directions[index]; 
+        // }
+
+        let direction = weather.data[0].wind_cdir;
+        let wind_speed = weather.data[0].wind_spd;
+
+        wind_speed = wind_speed * 2.237; 
 
 
         this.wind.textContent = `Winds moving ${direction} at ${wind_speed.toPrecision(3)} mph`; 
