@@ -1,6 +1,8 @@
+ 
 class Weather{
     constructor(city, state, country){
-        this.apiKey = '29e07fcd63c362c8e5bdd00faa631262';
+      
+        this.apiKey = "95ca468302e24da198c1a6ac44d33d53";
         this.city = city; 
         this.state = state;
         this.country = country; 
@@ -8,11 +10,16 @@ class Weather{
     }
     //Fetch Weather 
     async getWeather(){
-            
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.city},${this.state},&appid=${this.apiKey}`);
+        
+    
+        const response = await fetch(
+          `https://api.weatherbit.io/v2.0/current?city=${this.city},${this.state}&key=${this.apiKey}`
+        );
         if(response.status === 200){
         const responseData = await response.json()
+        console.log(responseData);
         return responseData;
+        
         }
         else{
             alert(`ERROR: ${response.status} Please Try Again!`)
