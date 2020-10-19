@@ -26,7 +26,7 @@ class UI{
 
         //ICON
         let icon = weather.weather[0].icon
-        this.icon.setAttribute('src', `http://openweathermap.org/img/w/${icon}.png`);
+        this.icon.setAttribute('src', `https://openweathermap.org/img/w/${icon}.png`);
 
         //Humidity 
         let humidity = weather.main.humidity;
